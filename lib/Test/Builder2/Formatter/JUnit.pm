@@ -133,5 +133,27 @@ sub _get_testsuite_name {
 }
 
 
+### Be compatible with TAP::V13, a lot of stuff assumes this :((
+has nesting_level => is => 'rw',
+  isa             => 'Test::Builder2::Positive_Int',
+  default         => 0;
+
+has indent_nesting_with => is => 'rw',
+  isa                   => 'Str',
+  default               => "    ";
+
+has counter => is => 'rw',
+  isa       => 'Test::Builder2::Counter',
+  default   => sub {
+  require Test::Builder2::Counter;
+  return Test::Builder2::Counter->create;
+  },
+  ;
+
+has use_numbers => is => 'rw',
+  isa           => 'Bool',
+  default       => 1,
+  ;
+
 
 1;
