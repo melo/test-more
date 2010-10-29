@@ -2357,6 +2357,10 @@ sub _ending {
         $self->is_passing(0);
         return;
     }
+    
+    # Most likely not the correct place, but it will do for our tests
+    $self->{Formatter}->end();
+
     # Figure out if we passed or failed and print helpful messages.
     my $test_results = $self->{History}->results;
     if(@$test_results) {
